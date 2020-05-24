@@ -1,0 +1,125 @@
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; /** 1rem = 10px **/
+    height: 100%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.6rem;
+    line-height: 2;
+    background-image: url(../img/19744.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    min-height: 100%;
+}
+
+/**Globales**/
+.contenedor {
+    max-width: 120rem;
+    width: 95%;
+    margin: 0 auto;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'PT-Sans', sans-serif;
+}
+
+h1 {
+    font-size: 4.8rem;
+}
+
+h2 {
+    font-size: 4.0rem;
+    line-height: 1.2;
+}
+
+img {
+    max-width: 100%;
+}
+
+/*Utilidades*/
+.centrar-texto {
+    text-align: center;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+
+
+/**Botones**/
+.btn {
+    display: block;
+    text-align: center;
+    padding: 1rem 3rem;
+    margin: 2rem 0;
+    color: black;
+    background-color: palegreen;
+    text-decoration: none;
+    font-family: 'PT-Sans', sans-serif;
+    text-transform: uppercase;
+    font-size: 2rem;
+    border-radius: 2rem;
+    margin-left: 50%;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+/*Header*/
+.site-header {
+    height: 20%;
+    padding-left: 5rem;
+    padding-top: 7rem;
+}
+
+.site-header a {
+    color: black;
+    text-decoration: none;
+}
+
+.site-header h1 {
+    text-align: center;
+    font-weight: 400;
+    font-size: 6rem;
+    text-align: left;
+}
+
+.site-header h1 span {
+    font-weight: 700;
+}
+
+/** Contenido Principal*/
+.contenido-principal {
+    height: 40rem;
+    margin-top: 28rem;
+}
+
+/** Buscador**/
+label {
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+}
+
+input:not([type="submit"]),
+textarea,
+select {
+    padding: 1rem;
+    display: block;
+    width: 100%;
+    background-color: #e1e1e1;
+    margin-bottom: 2rem;
+    border: none;
+    border-radius: 1rem;
+}
+
+

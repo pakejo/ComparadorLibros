@@ -1,0 +1,136 @@
+:root {
+    --fuentePrincipal: 'Staatliches', cursive;
+    --primario: rgb(255, 255, 255);
+    --primarioOscuro: rgba(107, 109, 109, 1);
+    --secundario: #ffce00;
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: var(--primario);
+    line-height: 2;
+    font-size: 2rem;
+    background-image: url(../img/19744.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    min-height: 100%;
+}
+
+h2 {
+    text-align: center;
+    font-size: 4rem;
+    font-family: var(--fuentePrincipal);
+}
+.contenedor {
+   max-width: 1000px;
+   width: 95%;
+   margin: 2rem auto; 
+}
+
+img {
+    max-width: 100%;
+}
+
+.header h1 {
+    text-align: center;
+    font-size: 5rem;
+}
+
+.barra {
+    background-color: var(--primarioOscuro);
+    padding: 1rem 0;
+}
+
+.barra nav {
+    display: grid;
+    justify-content: center;
+}
+
+.barra .nav a {
+    font-family: var(--fuentePrincipal);
+    font-size: 3rem;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+}
+
+.cabecera {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    background-color: var(--primarioOscuro);
+    padding: 3rem;
+}
+
+.cabecera img {
+    max-width: 100%;
+    margin: auto;
+}
+
+.descripcion {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    color: var(--primario);
+    margin: 1rem;
+}
+
+.descripcion p {
+    font-size: 3rem;
+    padding: 0;
+    margin: 0;
+}
+
+.descripcion span {
+    font-family: var(--fuentePrincipal);
+    font-size: 3rem;
+}
+
+.lista-productos {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 2rem;
+}
+
+@media (min-width:768px) {
+    .lista-productos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.producto {
+    background-color: var(--primarioOscuro);
+    padding: 1rem;
+}
+
+.producto a {
+    display: grid;
+}
+
+.producto a img {
+    margin: auto;
+    max-width: 70%;
+}
+
+.contenido-producto {
+    font-family: var(--fuentePrincipal);
+    text-align: center;
+    margin: 1rem 0;
+    line-height: 1.2;
+}
+
+.contenido-producto .titulo {
+    font-size: 4rem;
+}
+
+.contenido-producto .precio {
+    font-size: 2.8rem;
+}
