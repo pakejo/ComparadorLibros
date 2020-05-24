@@ -34,7 +34,7 @@
             <img src="${book.image}" alt="logo">
             <div class="descripcion">
                 <p><span>Titulo: </span>${book.titulo}</p>
-                <p><span>Autor: </span> ${book.autor}</p>
+                <p><span>Autor: </span> ${book.autores}</p>
                 <p><span>Editorial: </span>${book.editorial}</p>
                 <p><span>ISBN: </span> ${book.isbn}</p>
             </div>
@@ -42,11 +42,11 @@
 
         <div class="lista-productos contenedor">
             <div class="producto">
-                <a href="#">
+                <a href="${book.url}">
                     <img src="img/amazon_logo.png" alt="" srcset="">
                 </a>
                 <div class="contenido-producto">
-                    <p><div class="precio">${book.ofertas[0].precio}€</div></p>
+                    <p><div class="precio">${book.ofertas[0].precio}</div></p>
                 </div>
             </div>
 
