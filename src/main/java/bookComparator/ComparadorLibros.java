@@ -27,7 +27,7 @@ public class ComparadorLibros extends HttpServlet {
 			book.setIsbn(isbn);
 			WebScraping web = new WebScraping();
 			web.searchPopularLibros(book);
-			web.searchAgapea(book);
+			web.buscarAgapea(book);
 
 			request.setAttribute("book", book);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/book.jsp");

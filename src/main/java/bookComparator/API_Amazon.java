@@ -75,8 +75,8 @@ public class API_Amazon {
 		try {
 			response = api.searchItems(searchItemsRequest);
 
-			System.out.println("API called successfully");
-			System.out.println("Complete response: " + response);
+			//System.out.println("API called successfully");
+			//System.out.println("Complete response: " + response);
 
 			String url = "";
 			String precio = "";
@@ -98,21 +98,28 @@ public class API_Amazon {
 							&& item.getOffers().getListings().get(0).getPrice().getDisplayAmount() != null) {
 						precio = item.getOffers().getListings().get(0).getPrice().getDisplayAmount();
 					}
+					
+					if (item.getItemInfo() != null && item.getItemInfo().getByLineInfo() != null &&
+							item.getItemInfo().getByLineInfo().getContributors().get(0) != null &&
+							item.getItemInfo().getByLineInfo().getContributors().get(0).getName() != null)
+						book.setAutor(item.getItemInfo().getByLineInfo().getContributors().get(0).getName());
+					
+					if (item.getItemInfo() != null && item.getItemInfo().getByLineInfo() != null &&
+							item.getItemInfo().getByLineInfo().getManufacturer() != null && 
+							item.getItemInfo().getByLineInfo().getManufacturer().getDisplayValue() != null)
+						book.setEditorial(item.getItemInfo().getByLineInfo().getManufacturer().getDisplayValue());
+					
+					if (item.getImages() != null && item.getImages().getPrimary() != null && 
+							item.getImages().getPrimary().getLarge() != null && item.getImages().getPrimary().getLarge().getURL() != null)
+						book.setImage(item.getImages().getPrimary().getLarge().getURL());
 				}
 
-				String autor = item.getItemInfo().getByLineInfo().getContributors().get(0).getName();
-				System.out.println(autor);
-				String editorial = item.getItemInfo().getByLineInfo().getManufacturer().getDisplayValue();
-				System.out.println(editorial);
-				String imagen = item.getImages().getPrimary().getLarge().getURL();
-				System.out.println(imagen);
-				
-				book.setAutor(autor);
-				book.setEditorial(editorial);
-				book.setImage(imagen);
 			}
 
-			book.addOferta(new BookOffer(url, "Amazon", precio));
+			if (precio != "")
+				book.addOferta(new BookOffer(url, "Amazon", precio));
+			else
+				book.addOferta(new BookOffer(url, "Amazon", "No se han encontrado resultados"));
 
 			if (response.getErrors() != null) {
 				System.out.println("Printing errors:\nPrinting Errors from list of Errors");

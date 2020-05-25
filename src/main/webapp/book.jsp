@@ -42,7 +42,7 @@
 
         <div class="lista-productos contenedor">
             <div class="producto">
-                <a href="${book.url}">
+                <a href="${book.ofertas[0].url}">
                     <img src="img/amazon_logo.png" alt="" srcset="">
                 </a>
                 <div class="contenido-producto">
@@ -51,20 +51,20 @@
             </div>
 
             <div class="producto">
-                <a href="#">
+                <a href="${book.ofertas[1].url}">
                     <img src="img/popular_logo.jpg" alt="" srcset="">
                 </a>
                 <div class="contenido-producto">
-                    <p><div class="precio">${book.ofertas[1].precio}€</div></p>
+                    <p><div class="precio">${book.ofertas[1].precio}</div></p>
                 </div>
             </div>
 
             <div class="producto">
-                <a href="#">
+                <a href="${book.ofertas[2].url}">
                     <img src="img/agapea_logo.png" alt="" srcset="">
                 </a>
                 <div class="contenido-producto">
-                    <p><div class="precio">${book.ofertas[2].precio}€</div></p>
+                    <p><div class="precio">${book.ofertas[2].precio}</div></p>
                 </div>
             </div>
         </div>
