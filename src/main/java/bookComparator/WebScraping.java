@@ -49,14 +49,15 @@ public class WebScraping {
 			String urlLibro = "";
 			
 			// Editorial
+			urlLibro = d.getElementsByClass("portada").select("a").attr("href");
+			d = Jsoup.connect("https://www.popularlibros.com" + urlLibro).timeout(6000).get();
+			
 			if (libro.getEditorial() == "")
 			{
-				urlLibro = d.getElementsByClass("portada").select("a").attr("href");
-				d = Jsoup.connect("https://www.popularlibros.com" + urlLibro).timeout(6000).get();
 				libro.setEditorial(d.getElementsByClass("editorial").get(0).text());				
 			}
 			
-			BookOffer oferta = new BookOffer("https://www.popularlibros.com" + urlLibro, "Popular Libros", precio_final + "€");
+			BookOffer oferta = new BookOffer("https://www.popularlibros.com" + urlLibro, "Popular Libros", precio_final + " €");
 			libro.addOferta(oferta);
 			
 		} else {
@@ -117,7 +118,7 @@ public class WebScraping {
 				String price = precio.get(0).getAllElements().get(0).text().split("€")[0];
 				
 				if (price != "") {
-					BookOffer oferta = new BookOffer(e, "Agapea", price + "€");
+					BookOffer oferta = new BookOffer(e, "Agapea", price + " €");
 					libro.addOferta(oferta);
 				} else {
 					BookOffer oferta = new BookOffer(e, "Agapea", "No se han encontrado resultados");
@@ -130,6 +131,55 @@ public class WebScraping {
 				libro.addOferta(oferta);
 			}
 		}
+	}
+	
+	public void buscarFnac(Book libro) throws IOException
+	{
+		// Cogemos primera pagina
+		String url = "https://www.fnac.es/SearchResult/ResultList.aspx?SCat=0%211&Search=" + libro.getIsbn() + "&sft=1&sa=0";
+		Document d = Jsoup.connect(url).timeout(6000).get();
+		
+		String existe = d.getElementsByClass("Search-titleCount").get(0).text();
+		
+		if(existe.equals("(0)"))
+		{
+			BookOffer oferta = new BookOffer(url, "Fnac", "No se han encontrado resultados");
+			libro.addOferta(oferta);
+		}
+		else
+		{			
+			// Cogemos pagina del libro
+			String url2 = d.getElementsByClass("Article-title").get(0).attr("href");
+			d = Jsoup.connect(url2).timeout(6000).get();
+			
+			//Cogemos la imagen
+			if(libro.getImage() == "")
+				libro.setImage(d.getElementsByClass("f-productVisuals-mainMedia").get(0).attr("src"));
+			
+			//Cogemos el titulo
+			if(libro.getTitulo() == "")
+				libro.setTitulo(d.getElementsByClass("f-productHeader-Title").get(0).text());
+			
+			//Cogemos el autor
+			if(libro.getAutores() == "")
+				libro.setAutor(d.getElementsByClass("Feature-desc").get(0).getAllElements().get(2).text());
+			
+			//Cogemos editorial
+			if(libro.getEditorial() == "")
+				libro.setEditorial(d.getElementsByClass("Feature-desc").get(1).getAllElements().get(2).text());
+			
+			//Cogemos el precio
+			String price = d.getElementsByClass("f-priceBox-price--reco").get(0).text();
+			
+			if (price != "") {
+				BookOffer oferta = new BookOffer(url2, "Fnac", price);
+				libro.addOferta(oferta);
+			} else {
+				BookOffer oferta = new BookOffer(url2, "Fnac", "No se han encontrado resultados");
+				libro.addOferta(oferta);
+			}	
+		}
+		
 	}
 }
 

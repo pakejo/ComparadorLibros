@@ -6,6 +6,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,8 +15,9 @@
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
     <link rel="stylesheet" href="css/style_book.css">
-    
+
 </head>
+
 <body>
     <header class="header">
         <h1>Books<span>Comparator</span></h1>
@@ -34,40 +36,62 @@
             <img src="${book.image}" alt="logo">
             <div class="descripcion">
                 <p><span>Titulo: </span>${book.titulo}</p>
-                <p><span>Autor: </span> ${book.autores}</p>
+                <p><span>Autor: </span>${book.autores}</p>
                 <p><span>Editorial: </span>${book.editorial}</p>
-                <p><span>ISBN: </span> ${book.isbn}</p>
+                <p><span>ISBN: </span>${book.isbn}</p>
+                <form action="${book.ofertas[book.posMejorPrecio].url}">
+                    <input type="submit" class="boton" value="Ver Mejor Precio">
+                </form>
             </div>
         </div>
 
         <div class="lista-productos contenedor">
             <div class="producto">
                 <a href="${book.ofertas[0].url}">
-                    <img src="img/amazon_logo.png" alt="" srcset="">
+                    <img src="img/amazon_logo.png">
+                    <div class="contenido-producto">
+                        <p>
+                        <div class="precio">${book.ofertas[0].precio}</div>
+                        </p>
+                    </div>
                 </a>
-                <div class="contenido-producto">
-                    <p><div class="precio">${book.ofertas[0].precio}</div></p>
-                </div>
             </div>
 
             <div class="producto">
                 <a href="${book.ofertas[1].url}">
-                    <img src="img/popular_logo.jpg" alt="" srcset="">
+                    <img src="img/popular_logo.jpg">
+                    <div class="contenido-producto">
+                        <p>
+                        <div class="precio">${book.ofertas[1].precio}</div>
+                        </p>
+                    </div>
                 </a>
-                <div class="contenido-producto">
-                    <p><div class="precio">${book.ofertas[1].precio}</div></p>
-                </div>
             </div>
 
             <div class="producto">
                 <a href="${book.ofertas[2].url}">
-                    <img src="img/agapea_logo.png" alt="" srcset="">
+                    <img src="img/agapea_logo.png">
+                    <div class="contenido-producto">
+                        <p>
+                        <div class="precio">${book.ofertas[2].precio}</div>
+                        </p>
+                    </div>
                 </a>
-                <div class="contenido-producto">
-                    <p><div class="precio">${book.ofertas[2].precio}</div></p>
-                </div>
             </div>
+
+            <div class="producto">
+                <a href="${book.ofertas[3].url}">
+                    <img src="img/logo_fnac.png">
+                    <div class="contenido-producto">
+                        <p>
+                        <div class="precio">${book.ofertas[3].precio}</div>
+                        </p>
+                    </div>
+                </a>
+            </div>
+
         </div>
     </main>
 </body>
+
 </html>

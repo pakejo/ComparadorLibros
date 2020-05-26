@@ -9,6 +9,8 @@ public class Book {
 	private String autores;
 	private String image;
 	private String url;
+	private String mejorPrecio;
+	private int posMejorPrecio;
 	private ArrayList<BookOffer> ofertas;
 
 	public Book() {
@@ -19,6 +21,8 @@ public class Book {
 		this.autores = "";
 		this.image = "";
 		this.url = "";
+		this.setMejorPrecio("");
+		this.setPosMejorPrecio(0);
 		this.ofertas = new ArrayList<BookOffer>();
 	}
 
@@ -80,23 +84,54 @@ public class Book {
 		return ofertas;
 	}
 
-	public int numberMatching(String name) {
-		String lowname = name.toLowerCase();
-		String[] parts = lowname.split(" ");
-		int num_palabras = parts.length;
-		int matchs = 0;
-		String lownombre = isbn.toLowerCase();
-		for (int i = 0; i < num_palabras; ++i) {
-			if (lownombre.contains(parts[i]))
-				matchs++;
+	public void buscarMejorPrecio()
+	{
+		double mejorOferta = 1000.0;
+		int cont = 0;
+		
+		for(BookOffer oferta : this.ofertas)
+		{
+			if (oferta.getPrecio() != "No se han encontrado resultados")
+			{				
+				String val = oferta.getPrecio().split("€")[0].replace(",", ".");
+				
+				if (oferta.getSite().equals("Fnac"))
+					val = val.substring(0, val.length());
+				else
+					val = val.substring(0, val.length() - 1);
+				
+				double valNum = Double.valueOf(val);
+				
+				if (mejorOferta > valNum)
+				{
+					mejorOferta = valNum;
+					this.setPosMejorPrecio(cont);
+				}
+				
+				cont++;
+			}
+			else
+				cont++;
 		}
-		return matchs;
+		
+		this.setMejorPrecio(String.valueOf(mejorOferta));
 	}
 
-	public boolean nameMatching(String name) {
-		String[] parts = name.split(" ");
-		int num_palabras = parts.length;
-
-		return numberMatching(name) > num_palabras / 2 + 1;
+	public String getMejorPrecio() {
+		return mejorPrecio;
 	}
+
+	public void setMejorPrecio(String mejorPrecio) {
+		this.mejorPrecio = mejorPrecio;
+	}
+
+	public int getPosMejorPrecio() {
+		return posMejorPrecio;
+	}
+
+	public void setPosMejorPrecio(int posMejorPrecio) {
+		this.posMejorPrecio = posMejorPrecio;
+	}
+	
+	
 }

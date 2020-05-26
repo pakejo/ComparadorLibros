@@ -30,15 +30,21 @@ h2 {
     font-size: 4rem;
     font-family: var(--fuentePrincipal);
 }
-.contenedor {
-   max-width: 1000px;
-   width: 95%;
-   margin: 2rem auto; 
-}
-
 img {
     max-width: 100%;
 }
+
+a:visited, a:link, a:active {
+    text-decoration: none;
+}
+
+.contenedor {
+   max-width: 100rem;
+   max-height: 80rem;
+   width: 95%;
+   margin: 2rem auto;
+}
+
 
 .header h1 {
     text-align: center;
@@ -69,16 +75,19 @@ img {
     justify-content: center;
     background-color: var(--primarioOscuro);
     padding: 3rem;
+    max-height: fit-content;
 }
 
 .cabecera img {
-    width: 500px;
+    width: 40rem;
     margin: auto;
+    object-fit: cover;
+    object-position: center center;
 }
 
 .descripcion {
     display: grid;
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     color: var(--primario);
     margin: 1rem;
 }
@@ -94,6 +103,33 @@ img {
     font-size: 3rem;
 }
 
+.descripcion form {
+    text-align: center;
+}
+
+.boton {
+    height: 10rem;
+    width: 40rem;
+    margin: auto;
+    text-decoration:none;
+    font-weight: 600;
+    font-size: 30px;
+    color: white;
+    background-color: var(--primarioOscuro);
+    border-width: 3px;
+    border-style: solid;
+    border-color: #000000;
+    border-radius: 4rem;
+    transition: background-color 0.3s ease-out;
+    transition: color 0.3s ease-out;
+}
+
+.boton:hover {
+    cursor: pointer;
+    background-color: #48d1cc;
+    color: black;
+}
+
 .lista-productos {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -102,13 +138,19 @@ img {
 
 @media (min-width:768px) {
     .lista-productos {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        justify-content: center;
     }
 }
 
 .producto {
     background-color: var(--primarioOscuro);
     padding: 1rem;
+    transition: background-color 0.3s;
+}
+
+.producto:hover {
+    background-color: #48d1cc;
 }
 
 .producto a {
@@ -133,4 +175,6 @@ img {
 
 .contenido-producto .precio {
     font-size: 2.8rem;
+    color: black;
+    text-decoration: none;
 }
